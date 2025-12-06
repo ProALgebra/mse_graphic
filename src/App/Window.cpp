@@ -19,7 +19,7 @@
 namespace
 {
 
-// Fullscreen quad: position (x, y) and tex coords (u, v)
+
 constexpr std::array<GLfloat, 16u> vertices = {
 	-1.0f, -1.0f, 0.0f, 0.0f,
 	 1.0f, -1.0f, 1.0f, 0.0f,
@@ -163,7 +163,6 @@ void Window::onInit()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	// Black clear color for background
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// Clear all FBO buffers
@@ -181,7 +180,7 @@ void Window::onRender()
 	program_->bind();
 	vao_.bind();
 
-	// Update uniforms
+
 	program_->setUniformValue(centerUniform_, fractal_.centerX, fractal_.centerY);
 	program_->setUniformValue(scaleUniform_, fractal_.scale);
 	program_->setUniformValue(maxIterUniform_, fractal_.maxIterations);

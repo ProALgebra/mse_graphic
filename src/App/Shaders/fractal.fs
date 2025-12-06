@@ -11,7 +11,7 @@ uniform float u_aspect;
 uniform float u_intensity;
 uniform float u_colorShift;
 
-void main() {ъ
+void main() {
 	float x = (v_tex.x - 0.5) * u_scale;
 	float y = (v_tex.y - 0.5) * u_scale / u_aspect;
 
@@ -20,7 +20,7 @@ void main() {ъ
 
 	float zx = 0.0;
 	float zy = 0.0;
-	float threshold2 = 4.0; ъ
+	float threshold2 = 4.0;
 
 	int i;
 	for (i = 0; i < u_maxIter && zx * zx + zy * zy <= threshold2; ++i) {
