@@ -6,11 +6,13 @@
 #include <QMatrix4x4>
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLTexture>
 #include <QOpenGLVertexArrayObject>
 
 #include <functional>
 #include <memory>
+
+class QMouseEvent;
+class QWheelEvent;
 
 class Window final : public fgl::GLWidget
 {
@@ -48,17 +50,10 @@ signals:
 	void updateUI();
 
 private:
-	GLint mvpUniform_ = -1;
-
 	QOpenGLBuffer vbo_{QOpenGLBuffer::Type::VertexBuffer};
 	QOpenGLBuffer ibo_{QOpenGLBuffer::Type::IndexBuffer};
 	QOpenGLVertexArrayObject vao_;
 
-	QMatrix4x4 model_;
-	QMatrix4x4 view_;
-	QMatrix4x4 projection_;
-
-	std::unique_ptr<QOpenGLTexture> texture_;
 	std::unique_ptr<QOpenGLShaderProgram> program_;
 
 	QElapsedTimer timer_;
@@ -69,4 +64,31 @@ private:
 	} ui_;
 
 	bool animated_ = true;
+
+	struct {
+		float centerX = -0.5f;
+		float centerY = 0.0f;
+		float scale = 3.0f;
+		int maxIterations = 200;
+		float intensity = 1.0f;
+		float colorShift = 0.0f;
+	} fractal_;
+
+	float aspect_ = 1.0f;
+
+	GLint centerUniform_ = -1;
+	GLint scaleUniform_ = -1;
+	GLint maxIterUniform_ = -1;
+	GLint aspectUniform_ = -1;
+	GLint intensityUniform_ = -1;
+	GLint colorShiftUniform_ = -1;
+
+	QPoint lastMousePos_;
+	bool panning_ = false;
+
+protected:
+	void mousePressEvent(QMouseEvent * event) override;
+	void mouseMoveEvent(QMouseEvent * event) override;
+	void mouseReleaseEvent(QMouseEvent * event) override;
+	void wheelEvent(QWheelEvent * event) override;
 };

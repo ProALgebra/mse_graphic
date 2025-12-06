@@ -3,10 +3,9 @@
         <file>Models/chess.glb</file>
     </qresource>
     <qresource prefix="/">
-        <file>Textures/voronoi.png</file>
-    </qresource>
-    <qresource prefix="/">
         <file>Shaders/diffuse.fs</file>
         <file>Shaders/diffuse.vs</file>
+        <file>Shaders/fractal.fs</file>
+        <file>Shaders/fractal.vs</file>
     </qresource>
 </RCC>
