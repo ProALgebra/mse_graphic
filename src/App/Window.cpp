@@ -434,7 +434,7 @@ void Window::updateMorphGeometryIfNeeded()
 
 bool Window::loadModel()
 {
-	QFile file(":/Models/cube.glb");
+	QFile file(":/Models/chess_final.glb");
 
 	if (!file.open(QIODevice::ReadOnly))
 	{
